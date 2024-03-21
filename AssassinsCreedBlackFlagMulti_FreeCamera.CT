@@ -1,0 +1,726 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="45">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>2087</ID>
+      <Description>"Camera"</Description>
+      <Options moHideChildren="1"/>
+      <GroupHeader>1</GroupHeader>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>38</ID>
+          <Description>"Camera Black Flag Multiplayer"</Description>
+          <Options moManualExpandCollapse="1"/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+assert("AC4BFMP.exe"+7CA5DA,0F 28 46 20 8B 45 0C)
+define(camStruct,"AC4BFMP.exe"+7CA5DA)
+registersymbol(camStruct)
+
+alloc(camStructMem,$1000,"AC4BFMP.exe"+7CA5DA) // alloc the memory
+registersymbol(camStructMem)
+
+define(pBFMCamStruct,camStructMem+100) // define the pointer to attach then to memory we just allocated
+registersymbol(pBFMCamStruct)
+
+label(code)
+label(return)
+
+pBFMCamStruct:
+  dq 0
+
+camStructMem:
+
+code:
+  mov [pBFMCamStruct],esi
+  movaps xmm0,[esi+20]
+  mov eax,[ebp+0C]
+  jmp return
+
+camStruct:
+  jmp camStructMem
+  nop 2
+
+return:
+
+[DISABLE]
+
+camStruct:
+  db 0F 28 46 20 8B 45 0C
+
+unregistersymbol(pBFMCamStruct)
+unregistersymbol(camStructMem)
+unregistersymbol(memStruct)
+
+dealloc(camStructMem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: AC4BFMP.exe+7CA5DA
+
+AC4BFMP.exe+7CA5BE: 8B EC           - mov ebp,esp
+AC4BFMP.exe+7CA5C0: 56              - push esi
+AC4BFMP.exe+7CA5C1: 57              - push edi
+AC4BFMP.exe+7CA5C2: 8B F1           - mov esi,ecx
+AC4BFMP.exe+7CA5C4: BF 60 16 AE 01  - mov edi,AC4BFMP.exe+16E1660
+AC4BFMP.exe+7CA5C9: 8B CF           - mov ecx,edi
+AC4BFMP.exe+7CA5CB: E8 9B 2E 1C 00  - call AC4BFMP.exe+98D46B
+AC4BFMP.exe+7CA5D0: 0F 28 46 10     - movaps xmm0,[esi+10]
+AC4BFMP.exe+7CA5D4: 8B 45 08        - mov eax,[ebp+08]
+AC4BFMP.exe+7CA5D7: 0F 29 00        - movaps [eax],xmm0
+// ---------- INJECTING HERE ----------
+AC4BFMP.exe+7CA5DA: 0F 28 46 20     - movaps xmm0,[esi+20]
+// ---------- DONE INJECTING  ----------
+AC4BFMP.exe+7CA5DE: 8B 45 0C        - mov eax,[ebp+0C]
+AC4BFMP.exe+7CA5E1: 0F 29 00        - movaps [eax],xmm0
+AC4BFMP.exe+7CA5E4: D9 46 34        - fld dword ptr [esi+34]
+AC4BFMP.exe+7CA5E7: 8B 45 10        - mov eax,[ebp+10]
+AC4BFMP.exe+7CA5EA: 8B CF           - mov ecx,edi
+AC4BFMP.exe+7CA5EC: D9 18           - fstp dword ptr [eax]
+AC4BFMP.exe+7CA5EE: E8 81 2E 1C 00  - call AC4BFMP.exe+98D474
+AC4BFMP.exe+7CA5F3: 5F              - pop edi
+AC4BFMP.exe+7CA5F4: 5E              - pop esi
+AC4BFMP.exe+7CA5F5: 5D              - pop ebp
+}
+</AssemblerScript>
+          <Hotkeys>
+            <Hotkey>
+              <Action>Toggle Activation</Action>
+              <Keys>
+                <Key>18</Key>
+                <Key>109</Key>
+              </Keys>
+              <ID>0</ID>
+            </Hotkey>
+          </Hotkeys>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>39</ID>
+              <Description>"X"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>Float</VariableType>
+              <Address>[pBFMCamStruct]+10</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>40</ID>
+              <Description>"Y"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>Float</VariableType>
+              <Address>[pBFMCamStruct]+14</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>42</ID>
+              <Description>"Z"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>Float</VariableType>
+              <Address>[pBFMCamStruct]+18</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>45</ID>
+              <Description>"Pitch"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>Float</VariableType>
+              <Address>[pBFMCamStruct]+20</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>44</ID>
+              <Description>"Roll"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>Float</VariableType>
+              <Address>[pBFMCamStruct]+24</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>43</ID>
+              <Description>"Yaw"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>Float</VariableType>
+              <Address>[pBFMCamStruct]+28</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>46</ID>
+              <Description>"W"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>Float</VariableType>
+              <Address>[pBFMCamStruct]+2c</Address>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>47</ID>
+          <Description>"Camera Scripts Black Flag"</Description>
+          <Options moManualExpandCollapse="1"/>
+          <GroupHeader>1</GroupHeader>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>49</ID>
+              <Description>"Decouple Camera"</Description>
+              <VariableType>Auto Assembler Script</VariableType>
+              <AssemblerScript>[ENABLE]
+assert("AC4BFMP.exe"+7CA58C,0F 29 00 E8 B0 DB 83 FF) // should be unique
+"AC4BFMP.exe"+7CA58C: // inject the code with nothing
+  db 90 90 90
+
+[DISABLE]
+
+"AC4BFMP.exe"+7CA58C: // restore the values
+  db 0F 29 00 E8 B0 DB 83 FF
+
+{
+// ORIGINAL CODE - INJECTION POINT: AC4BFMP.exe+7CA58C
+
+AC4BFMP.exe+7CA572: 56              - push esi
+AC4BFMP.exe+7CA573: 57              - push edi
+AC4BFMP.exe+7CA574: 8B F1           - mov esi,ecx
+AC4BFMP.exe+7CA576: BF 60 16 AE 01  - mov edi,AC4BFMP.exe+16E1660
+AC4BFMP.exe+7CA57B: 8B CF           - mov ecx,edi
+AC4BFMP.exe+7CA57D: E8 E9 2E 1C 00  - call AC4BFMP.exe+98D46B
+AC4BFMP.exe+7CA582: 8B 4D 08        - mov ecx,[ebp+08]
+AC4BFMP.exe+7CA585: 0F 28 01        - movaps xmm0,[ecx]
+AC4BFMP.exe+7CA588: 8D 46 10        - lea eax,[esi+10]
+AC4BFMP.exe+7CA58B: 50              - push eax
+// ---------- INJECTING HERE ----------
+AC4BFMP.exe+7CA58C: 0F 29 00        - movaps [eax],xmm0
+// ---------- DONE INJECTING  ----------
+AC4BFMP.exe+7CA58F: E8 B0 DB 83 FF  - call AC4BFMP.exe+8144
+AC4BFMP.exe+7CA594: 8B 4D 0C        - mov ecx,[ebp+0C]
+AC4BFMP.exe+7CA597: 0F 28 01        - movaps xmm0,[ecx]
+AC4BFMP.exe+7CA59A: 8D 46 20        - lea eax,[esi+20]
+AC4BFMP.exe+7CA59D: 50              - push eax
+AC4BFMP.exe+7CA59E: 0F 29 00        - movaps [eax],xmm0
+AC4BFMP.exe+7CA5A1: E8 EE A3 83 FF  - call AC4BFMP.exe+4994
+AC4BFMP.exe+7CA5A6: 8B 45 10        - mov eax,[ebp+10]
+AC4BFMP.exe+7CA5A9: D9 00           - fld dword ptr [eax]
+AC4BFMP.exe+7CA5AB: 59              - pop ecx
+}
+</AssemblerScript>
+              <Hotkeys>
+                <Hotkey>
+                  <Action>Toggle Activation</Action>
+                  <Keys>
+                    <Key>17</Key>
+                    <Key>111</Key>
+                  </Keys>
+                  <ID>0</ID>
+                </Hotkey>
+              </Hotkeys>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>50</ID>
+              <Description>"Manual Rotation (Required For Roll)"</Description>
+              <VariableType>Auto Assembler Script</VariableType>
+              <AssemblerScript>[ENABLE]
+assert("AC4BFMP.exe"+7CA59E,0F 29 00 E8 EE A3 83 FF)
+"AC4BFMP.exe"+7CA59E:
+  db 90 90 90
+
+[DISABLE]
+"AC4BFMP.exe"+7CA59E:
+  db 0F 29 00 E8 EE A3 83 FF
+
+{
+// ORIGINAL CODE - INJECTION POINT: AC4BFMP.exe+7CA59E
+
+AC4BFMP.exe+7CA582: 8B 4D 08        - mov ecx,[ebp+08]
+AC4BFMP.exe+7CA585: 0F 28 01        - movaps xmm0,[ecx]
+AC4BFMP.exe+7CA588: 8D 46 10        - lea eax,[esi+10]
+AC4BFMP.exe+7CA58B: 50              - push eax
+AC4BFMP.exe+7CA58C: 0F 29 00        - movaps [eax],xmm0
+AC4BFMP.exe+7CA58F: E8 B0 DB 83 FF  - call AC4BFMP.exe+8144
+AC4BFMP.exe+7CA594: 8B 4D 0C        - mov ecx,[ebp+0C]
+AC4BFMP.exe+7CA597: 0F 28 01        - movaps xmm0,[ecx]
+AC4BFMP.exe+7CA59A: 8D 46 20        - lea eax,[esi+20]
+AC4BFMP.exe+7CA59D: 50              - push eax
+// ---------- INJECTING HERE ----------
+AC4BFMP.exe+7CA59E: 0F 29 00        - movaps [eax],xmm0
+// ---------- DONE INJECTING  ----------
+AC4BFMP.exe+7CA5A1: E8 EE A3 83 FF  - call AC4BFMP.exe+4994
+AC4BFMP.exe+7CA5A6: 8B 45 10        - mov eax,[ebp+10]
+AC4BFMP.exe+7CA5A9: D9 00           - fld dword ptr [eax]
+AC4BFMP.exe+7CA5AB: 59              - pop ecx
+AC4BFMP.exe+7CA5AC: 59              - pop ecx
+AC4BFMP.exe+7CA5AD: D9 5E 34        - fstp dword ptr [esi+34]
+AC4BFMP.exe+7CA5B0: 8B CF           - mov ecx,edi
+AC4BFMP.exe+7CA5B2: E8 BD 2E 1C 00  - call AC4BFMP.exe+98D474
+AC4BFMP.exe+7CA5B7: 5F              - pop edi
+AC4BFMP.exe+7CA5B8: 5E              - pop esi
+}
+</AssemblerScript>
+              <Hotkeys>
+                <Hotkey>
+                  <Action>Toggle Activation</Action>
+                  <Keys>
+                    <Key>17</Key>
+                    <Key>106</Key>
+                  </Keys>
+                  <ID>0</ID>
+                </Hotkey>
+              </Hotkeys>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>2086</ID>
+              <Description>"Enable Fov Modification(Photography) =&gt; Breaks the locking system"</Description>
+              <VariableType>Auto Assembler Script</VariableType>
+              <AssemblerScript>[ENABLE]
+assert("AC4BFMP.exe"+7CA5AD,D9 5E 34 8B CF E8 BD) // should be unique
+"AC4BFMP.exe"+7CA5AD:
+  db 90 90 90
+[DISABLE]
+"AC4BFMP.exe"+7CA5AD:
+  db D9 5E 34 8B CF
+
+{
+// ORIGINAL CODE - INJECTION POINT: AC4BFMP.exe+7CA5AD
+
+AC4BFMP.exe+7CA594: 8B 4D 0C        - mov ecx,[ebp+0C]
+AC4BFMP.exe+7CA597: 0F 28 01        - movaps xmm0,[ecx]
+AC4BFMP.exe+7CA59A: 8D 46 20        - lea eax,[esi+20]
+AC4BFMP.exe+7CA59D: 50              - push eax
+AC4BFMP.exe+7CA59E: 0F 29 00        - movaps [eax],xmm0
+AC4BFMP.exe+7CA5A1: E8 EE A3 83 FF  - call AC4BFMP.exe+4994
+AC4BFMP.exe+7CA5A6: 8B 45 10        - mov eax,[ebp+10]
+AC4BFMP.exe+7CA5A9: D9 00           - fld dword ptr [eax]
+AC4BFMP.exe+7CA5AB: 59              - pop ecx
+AC4BFMP.exe+7CA5AC: 59              - pop ecx
+// ---------- INJECTING HERE ----------
+AC4BFMP.exe+7CA5AD: D9 5E 34        - fstp dword ptr [esi+34]
+// ---------- DONE INJECTING  ----------
+AC4BFMP.exe+7CA5B0: 8B CF           - mov ecx,edi
+AC4BFMP.exe+7CA5B2: E8 BD 2E 1C 00  - call AC4BFMP.exe+98D474
+AC4BFMP.exe+7CA5B7: 5F              - pop edi
+AC4BFMP.exe+7CA5B8: 5E              - pop esi
+AC4BFMP.exe+7CA5B9: 5D              - pop ebp
+AC4BFMP.exe+7CA5BA: C2 0C 00        - ret 000C
+AC4BFMP.exe+7CA5BD: 55              - push ebp
+AC4BFMP.exe+7CA5BE: 8B EC           - mov ebp,esp
+AC4BFMP.exe+7CA5C0: 56              - push esi
+AC4BFMP.exe+7CA5C1: 57              - push edi
+}
+</AssemblerScript>
+              <Hotkeys>
+                <Hotkey>
+                  <Action>Toggle Activation</Action>
+                  <Keys>
+                    <Key>17</Key>
+                    <Key>107</Key>
+                  </Keys>
+                  <ID>0</ID>
+                </Hotkey>
+              </Hotkeys>
+              <CheatEntries>
+                <CheatEntry>
+                  <ID>52</ID>
+                  <Description>"FovControlValue"</Description>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <VariableType>Float</VariableType>
+                  <Address>[pBFMCamStruct]+34</Address>
+                </CheatEntry>
+              </CheatEntries>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>51</ID>
+              <Description>"FlyCamera"</Description>
+              <VariableType>Auto Assembler Script</VariableType>
+              <AssemblerScript>// Speed Modifier
+globalalloc(flyCamDeactivated,4)
+flyCamDeactivated:
+dd 0
+
+globalalloc(speedModifier,8)
+speedModifier:
+dd (float)0.000020
+
+{$lua}
+
+[ENABLE]
+
+createThread(function(timer)
+sleep(200)
+-- Setting global vars
+local timer = 0 -- if you like to record moving footage, set a 0 timer, otherwise, you can tweak up to 1 or 10
+local smallIncrement, LargeIncrement, rollSpeed, limit = 0.00000001, 0.0000001, 10,30000 -- consider putting REAL small values if your GPU is fast at timer = 0!
+local iniValue = readFloat("speedModifier")
+-- These values depends on calculation from pitchperfect
+local MaxPitch1 = 1.80 / math.pi
+local MaxPitch2 = -1.80 / math.pi
+local MinPitch = 0
+local speedAdjust = 0
+-- Values for Yaw (moving vertical &amp; horizontal while using arctan2
+local sign1 = -1
+local sign2 = 1
+local sign3 = 1
+function quaterRotation(axisX, axisY, axisZ, angle)
+    local halfAngle = angle
+    local sinHalfAngle = math.sin(halfAngle)
+    local cosHalfAngle = math.cos(halfAngle)
+
+    local quat = {}
+    quat.x = axisX * sinHalfAngle
+    quat.y = axisY * sinHalfAngle
+    quat.z = axisZ * cosHalfAngle
+    quat.w = sinHalfAngle
+    return quat
+end
+
+function multiplyQuaternions(q1, q2)
+    local result = {}
+    result.w = q1.w * q2.w - q1.x * q2.x - q1.y * q2.y - q1.z * q2.z
+    result.x = q1.w * q2.x + q1.x * q2.w + q1.y * q2.z - q1.z * q2.y
+    result.y = q1.w * q2.y - q1.x * q2.z + q1.y * q2.w + q1.z * q2.x
+    result.z = q1.w * q2.z + q1.x * q2.y - q1.y * q2.x + q1.z * q2.w
+    return result
+end
+
+function normalizeQuaternion(quat)
+    local length = math.sqrt(quat.x * quat.x + quat.y * quat.y + quat.z * quat.z + quat.w * quat.w)
+
+    if length ~= 0 then
+        quat.x = quat.x / length
+        quat.y = quat.y / length
+        quat.z = quat.z / length
+        quat.w = quat.w / length
+    end
+
+    return quat
+end
+while readFloat("flyCamDeactivated") == 0 do
+   sleep(timer)
+
+   local speed = readFloat("speedModifier")
+   local node = getAddress("[pBFMCamStruct]")
+   -- getting our location address &amp; values
+   local addrX = getAddress(node + 0x14)
+   local addrY = getAddress(node + 0x10)
+   local addrZ = getAddress(node + 0x18)
+   local fov = getAddress(node + 0x34) --  🔍
+   -- getting the camera angle (radians, have to x by 360° on yaw because full circonference)
+   local fpitch = readFloat(node + 0x20) -- ↨
+   local froll = readFloat(node + 0x24) -- 🔄️
+   local fyaw1 = readFloat(node + 0x28) --  ←→
+   local fyaw2 = readFloat(node + 0x2c) --  ←→
+
+   -- Calculating the rotation on X / Y
+   local yaw = math.atan2(sign1 * fyaw1, sign2 * fyaw2) * 360 / math.pi
+   local cosy = math.cos(math.rad(yaw)) -- 0 1 0
+   local siny = math.sin(math.rad(yaw)) -- 1 0 1
+
+   -- Calculating the rotation on Pitch / Roll, personal algorithm to manage quaternion matrix
+   local pitchperfect = 0
+   --Going we're "facing down" -- negatives axis
+   --Else we're "facing up" -- positive axis
+   if (fpitch &lt; 0 and froll &lt; 0) or (froll &lt; 0 and fyaw2 &lt; 0) or (fpitch &lt; 0 and fyaw1 &lt; 0) then
+      pitchperfect = -math.atan2((fpitch^2 + froll^2)^0.5)
+      else
+      pitchperfect = math.atan2((fpitch^2 + froll^2)^0.5)
+   end
+   local sinp = math.sin(pitchperfect) -- 1 0 1
+   local cosp = math.cos(pitchperfect) -- 0 1 0
+
+   --Pressed Keys
+   if isKeyPressed(VK_NUMPAD8) and isKeyPressed(VK_CONTROL) == false then
+     if sinp &lt; 0 then
+        speedAdjust = sinp / MaxPitch2
+     elseif sinp &gt; 0 then
+        speedAdjust = sinp / MaxPitch1
+     else
+         speedAdjust = MinPitch
+     end
+      writeFloat(addrY, readFloat(addrY) + (siny * speed) * (1 - speedAdjust))
+      writeFloat(addrX, readFloat(addrX) + (cosy * speed) * (1 - speedAdjust))
+      writeFloat(addrZ, readFloat(addrZ) + (sinp * speed))
+   elseif isKeyPressed(VK_NUMPAD8) and isKeyPressed(VK_CONTROL) then
+      writeFloat(addrY, readFloat(addrY) + (siny * speed))
+      writeFloat(addrX, readFloat(addrX) + (cosy * speed))
+   end
+
+   if isKeyPressed(VK_NUMPAD2) and isKeyPressed(VK_CONTROL) == false then
+     if sinp &lt; 0 then
+      speedAdjust = sinp / MaxPitch2
+     elseif sinp &gt; 0 then
+        speedAdjust = sinp / MaxPitch1
+     else
+         speedAdjust = MinPitch
+     end
+      writeFloat(addrY, readFloat(addrY) - (siny * speed) * (1 - speedAdjust))
+      writeFloat(addrX, readFloat(addrX) - (cosy * speed) * (1 - speedAdjust))
+      writeFloat(addrZ, readFloat(addrZ) - (sinp * speed))
+   elseif isKeyPressed(VK_NUMPAD2) and isKeyPressed(VK_CONTROL) then
+      writeFloat(addrY, readFloat(addrY) - (siny * speed))
+      writeFloat(addrX, readFloat(addrX) - (cosy * speed))
+   end
+
+   if isKeyPressed(VK_NUMPAD4) then
+      writeFloat(addrY, readFloat(addrY) - (cosy * speed))
+      writeFloat(addrX, readFloat(addrX) + (siny * speed))
+   end
+   if isKeyPressed(VK_NUMPAD6) then
+      writeFloat(addrY, readFloat(addrY) + (cosy * speed))
+      writeFloat(addrX, readFloat(addrX) - (siny * speed))
+   end
+
+    if isKeyPressed(VK_LEFT) then
+    local quat = {
+        y = fyaw1,
+        x = fpitch,
+        z = froll,
+        w = fyaw2
+    }
+    if froll &gt; 0 then
+       speedo = (speed * -1) / rollSpeed
+    else
+       speedo = speed / rollSpeed
+    end
+    local rollQuat = quaterRotation(0, 0, speedo, froll)
+    local multiplyQuat = multiplyQuaternions(rollQuat, quat)
+    local newQuat = normalizeQuaternion(multiplyQuat)
+
+     writeFloat(getAddress(node + 0x20), newQuat.x)
+     writeFloat(getAddress(node + 0x24), newQuat.z)
+     writeFloat(getAddress(node + 0x28), newQuat.y)
+     writeFloat(getAddress(node + 0x2c), newQuat.w)
+   end
+
+   if isKeyPressed(VK_RIGHT) then
+   local quat = {
+        y = fyaw1,
+        x = fpitch,
+        z = froll,
+        w = fyaw2
+    }
+    if froll &gt; 0 then
+       speedo = speed / rollSpeed
+    else
+       speedo = (speed * -1) / rollSpeed
+    end
+    local rollQuat = quaterRotation(0, 0, speedo, froll)
+    local multiplyQuat = multiplyQuaternions(rollQuat, quat)
+    local newQuat = normalizeQuaternion(multiplyQuat)
+
+     writeFloat(getAddress(node + 0x20), newQuat.x)
+     writeFloat(getAddress(node + 0x24), newQuat.z)
+     writeFloat(getAddress(node + 0x28), newQuat.y)
+     writeFloat(getAddress(node + 0x2c), newQuat.w)
+   end
+
+   if isKeyPressed(VK_NUMPAD9) then
+      writeFloat(fov, readFloat(fov) - (0.25 * speed))
+   end
+   if isKeyPressed(VK_NUMPAD3) then
+      writeFloat(fov, readFloat(fov) + (0.25 * speed))
+   end
+
+   if isKeyPressed(VK_NUMPAD7) then
+      writeFloat(addrZ, readFloat(addrZ) + (0.5 * speed))
+   end
+   if isKeyPressed(VK_NUMPAD1) then
+      writeFloat(addrZ, readFloat(addrZ) - (0.5 * speed))
+   end
+
+   if isKeyPressed(VK_PRIOR) then -- PAGEUP
+      if readFloat("speedModifier") + smallIncrement &lt;= (limit*LargeIncrement) then
+         writeFloat(getAddress("speedModifier"), readFloat("speedModifier") + smallIncrement)
+      end
+   end
+   if isKeyPressed(VK_NEXT) then --PAGEDOWN
+      if readFloat("speedModifier") - smallIncrement &gt;= 0 then
+         writeFloat(getAddress("speedModifier"), readFloat("speedModifier") - smallIncrement)
+      elseif readFloat("speedModifier") - smallIncrement &lt; 0 then
+         writeFloat(getAddress("speedModifier"), 0)
+      end
+   end
+   if isKeyPressed(VK_HOME) then
+      if readFloat("speedModifier") + LargeIncrement &lt;= (limit*LargeIncrement) then
+         writeFloat(getAddress("speedModifier"), readFloat("speedModifier") + LargeIncrement)
+      end
+   end
+   if isKeyPressed(VK_END) then
+      if readFloat("speedModifier") - LargeIncrement &gt;= 0 then
+         writeFloat(getAddress("speedModifier"), readFloat("speedModifier") - LargeIncrement)
+      elseif readFloat("speedModifier") - LargeIncrement &lt; 0 then
+         writeFloat(getAddress("speedModifier"), 0)
+      end
+   end
+   if isKeyPressed(VK_DELETE) then
+      writeFloat(getAddress("speedModifier"), iniValue)
+   end
+   if isKeyPressed(VK_NUMPAD0) then
+      writeFloat(getAddress("speedModifier"), 0)
+   end
+   if isKeyPressed(VK_CONTROL) and isKeyPressed(VK_NUMPAD0) then
+      writeFloat(addrY, 0)
+      writeFloat(addrX, 0)
+      writeFloat(addrZ, 0)
+      writeFloat(getAddress(node + 0x20), 0)
+      writeFloat(getAddress(node + 0x24), 0)
+      writeFloat(getAddress(node + 0x28), 0)
+      writeFloat(getAddress(node + 0x2c), 0)
+   end
+end
+end)
+
+ -- setup of variables that won't change in the function
+
+--[[
+t=createTimer(nil)
+timer_setInterval(t, 3)
+timer_onTimer(t, checkKeys)
+timer_setEnabled(t, true)
+]]
+[DISABLE]
+{$asm}
+flyCamDeactivated:
+dd 1
+
+</AssemblerScript>
+              <Hotkeys>
+                <Hotkey>
+                  <Action>Toggle Activation</Action>
+                  <Keys>
+                    <Key>17</Key>
+                    <Key>109</Key>
+                  </Keys>
+                  <ID>0</ID>
+                </Hotkey>
+              </Hotkeys>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+  </CheatEntries>
+  <CheatCodes>
+    <CodeEntry>
+      <Description>Change of movaps [esi+20],xmm0</Description>
+      <AddressString>ACRMP.exe+122A4E9</AddressString>
+      <Before>
+        <Byte>46</Byte>
+        <Byte>10</Byte>
+        <Byte>0F</Byte>
+        <Byte>28</Byte>
+        <Byte>01</Byte>
+      </Before>
+      <Actual>
+        <Byte>0F</Byte>
+        <Byte>29</Byte>
+        <Byte>46</Byte>
+        <Byte>20</Byte>
+      </Actual>
+      <After>
+        <Byte>D9</Byte>
+        <Byte>02</Byte>
+        <Byte>B9</Byte>
+        <Byte>00</Byte>
+        <Byte>DD</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>Change of movaps [esi+10],xmm0</Description>
+      <AddressString>ACRMP.exe+122A4E2</AddressString>
+      <Before>
+        <Byte>4B</Byte>
+        <Byte>0C</Byte>
+        <Byte>8B</Byte>
+        <Byte>53</Byte>
+        <Byte>10</Byte>
+      </Before>
+      <Actual>
+        <Byte>0F</Byte>
+        <Byte>29</Byte>
+        <Byte>46</Byte>
+        <Byte>10</Byte>
+      </Actual>
+      <After>
+        <Byte>0F</Byte>
+        <Byte>28</Byte>
+        <Byte>01</Byte>
+        <Byte>0F</Byte>
+        <Byte>29</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>Change of movaps [eax],xmm0</Description>
+      <AddressString>AC4BFMP.exe+7CA58C</AddressString>
+      <Before>
+        <Byte>01</Byte>
+        <Byte>8D</Byte>
+        <Byte>46</Byte>
+        <Byte>10</Byte>
+        <Byte>50</Byte>
+      </Before>
+      <Actual>
+        <Byte>0F</Byte>
+        <Byte>29</Byte>
+        <Byte>00</Byte>
+      </Actual>
+      <After>
+        <Byte>E8</Byte>
+        <Byte>B0</Byte>
+        <Byte>DB</Byte>
+        <Byte>83</Byte>
+        <Byte>FF</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>Change of movaps [eax],xmm5</Description>
+      <AddressString>AC4BFMP.exe+9C4401</AddressString>
+      <Before>
+        <Byte>F3</Byte>
+        <Byte>0F</Byte>
+        <Byte>58</Byte>
+        <Byte>55</Byte>
+        <Byte>18</Byte>
+      </Before>
+      <Actual>
+        <Byte>0F</Byte>
+        <Byte>29</Byte>
+        <Byte>28</Byte>
+      </Actual>
+      <After>
+        <Byte>F3</Byte>
+        <Byte>0F</Byte>
+        <Byte>10</Byte>
+        <Byte>6D</Byte>
+        <Byte>14</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>Change of movaps [edx],xmm0</Description>
+      <AddressString>AC4BFMP.exe+37287</AddressString>
+      <Before>
+        <Byte>59</Byte>
+        <Byte>0F</Byte>
+        <Byte>28</Byte>
+        <Byte>04</Byte>
+        <Byte>16</Byte>
+      </Before>
+      <Actual>
+        <Byte>0F</Byte>
+        <Byte>29</Byte>
+        <Byte>02</Byte>
+      </Actual>
+      <After>
+        <Byte>83</Byte>
+        <Byte>C2</Byte>
+        <Byte>10</Byte>
+        <Byte>49</Byte>
+        <Byte>75</Byte>
+      </After>
+    </CodeEntry>
+  </CheatCodes>
+  <UserdefinedSymbols>
+    <SymbolEntry>
+      <Name>speedModifier</Name>
+      <Address>20AE0010</Address>
+    </SymbolEntry>
+    <SymbolEntry>
+      <Name>speedModifier2</Name>
+      <Address>3B140010</Address>
+    </SymbolEntry>
+    <SymbolEntry>
+      <Name>mouseSpeed</Name>
+      <Address>15440010</Address>
+    </SymbolEntry>
+    <SymbolEntry>
+      <Name>flyCamDeactivated</Name>
+      <Address>20AE0000</Address>
+    </SymbolEntry>
+  </UserdefinedSymbols>
+</CheatTable>
