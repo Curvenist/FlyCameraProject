@@ -1,7 +1,7 @@
 # Assassin's Creed Revelations + Black Flag Multiplayer Fly Camera Scripts
 
 ## Video Guide 
-Assassin's Creed Revelations + Black Flag Multiplayer : https://www.youtube.com/watch?v=_mKyCTMHkbM
+Assassin's Creed Revelations + Black Flag Multiplayer : [https://www.youtube.com/watch?v=_mKyCTMHkbM](https://youtu.be/Nl1bTXiFEbM)
 
 ## Installation Requirements
 
